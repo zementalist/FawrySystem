@@ -56,24 +56,59 @@ public class MainFrame extends JFrame {
 		dispose();
 
 
+		// Register User & login
 		RegisteredUser.register("ahmed", "ahmed@gmail.com", "123", "123");
 		RegisteredUser.register("salah", "salah@gmail.com", "123", "123").setAsAdmin();
-		System.out.println(ApplicationState.registered_users.get(1).email);
+		User.login("ahmed@gmail.com", "123");
 
-//		ServiceProvider vodafone = new ServiceProvider("Vodafone");
-//		Service mobileReServ = new Service(vodafone, "Mobile Recharge", 300);
-//		Discount disc = new OverallDiscount(mobileReServ, 10);
-//		mobileReServ.setDiscountBehavior(disc);
-//		User.login("ahmed@gmail.com", "123");
-//		vodafone.provide(mobileReServ);
-//		new Transaction(User.getInstance(), mobileReServ).AddToContext();
-//		System.out.println(User.getInstance().getWallet().getBalance());
-//		vodafone.provide(mobileReServ);
-//		new Transaction(User.getInstance(), mobileReServ).AddToContext();
-//		System.out.println(User.getInstance().getWallet().getBalance());
-//		var tr = ApplicationState.transactions.get(0);
-//		tr.service.provider.payMethod.refund(tr.user.getWallet(), tr.paidAmount);
-//		System.out.println(User.getInstance().getWallet().getBalance());
+		// Init factory (in this case i'm using factory, not the abstract factory class)
+		ServiceProviderFactory spf = new ServiceProviderFactory();
+		ServiceFactory sf = new ServiceFactory();
+
+		// Create provider & service, using factory method
+		ServiceProvider vodafone = spf.makeServiceProvider("Vodafone");
+		Service mob_recharge_service = sf.makeService("Mobile recharge services");
+		vodafone.setService(mob_recharge_service);
+		System.out.println("Service (Mobile Recharge) | Provider (Vodafone)");
+		
+		// Set service cost (charge 100$)
+		int cost = 100;
+		System.out.println("Charge amount: " + cost);
+		mob_recharge_service.setCost(cost);
+		
+		// Admin is creating a discount for the first payment for user
+		Discount disc = new OverallDiscount(10);
+		mob_recharge_service.setDiscountBehavior(disc);
+		disc.setService(mob_recharge_service); // update observer state
+		
+		
+		// Print user's wallet balance before service
+		System.out.print("Balance before service: ");
+		System.out.println(User.getInstance().getWallet().getBalance());
+		
+		int payment_method_id = 0; // credit card
+		vodafone.provide(payment_method_id);
+		
+		System.out.print("Balance after service: ");
+		System.out.println(User.getInstance().getWallet().getBalance());
+		
+		// Re-request the same service (just testing that discount is first time only)
+		vodafone.provide(payment_method_id); // pay method index = 1 = cash method
+		
+		System.out.print("Balance after re-service: ");
+		System.out.println(User.getInstance().getWallet().getBalance());
+		
+		// User is requesting a refund for a specific transaction
+		var tr = ApplicationState.transactions.get(0);
+		System.out.println("User requested refund for transaction at index 0");
+		
+		
+		// Admin is accepting the refund request
+		tr.payMethod.refund(tr.user.getWallet(), tr.paidAmount);
+
+		
+		System.out.print("Balance after refunding: ");
+		System.out.println(User.getInstance().getWallet().getBalance());
 	}
 
 }
