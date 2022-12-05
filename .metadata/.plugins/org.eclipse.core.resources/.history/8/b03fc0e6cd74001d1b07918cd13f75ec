@@ -1,0 +1,12 @@
+package Models;
+
+public class CashPaymentMethod extends PaymentMethod  {
+	public boolean execute(Wallet wallet, double amount) {
+		System.out.println("Payment Method: Cash");
+		return super.execute(wallet, amount);
+	}
+	public boolean refund(Wallet wallet, double amount) {
+		System.out.println("Refunded " + amount + "$ Cash");
+		return super.refund(wallet, amount);
+	}
+}

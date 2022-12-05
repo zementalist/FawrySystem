@@ -1,0 +1,23 @@
+package Models;
+
+import Interfaces.IServiceProvider;
+import Singletons.User;
+
+public abstract class AbstractServiceProvider implements IServiceProvider {
+	public String name;
+	public PaymentMethod payMethod;
+	
+	public AbstractServiceProvider(String name, PaymentMethod payMethod) {
+		this.name = name;
+		this.payMethod = payMethod;
+	}
+	public AbstractServiceProvider(String name) {
+		this.name = name;
+		this.payMethod = new CreditCardPaymentMethod();
+	}
+	
+	public abstract void provide(Service service);
+	
+	public abstract void displayService();
+
+}

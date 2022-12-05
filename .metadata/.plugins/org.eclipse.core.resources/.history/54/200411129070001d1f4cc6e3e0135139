@@ -1,0 +1,12 @@
+package Models;
+
+public class CreditCardPaymentMethod extends PaymentMethod {
+	public void execute(Wallet wallet, double amount) {
+		wallet.send(amount);
+		System.out.println("Payed " + amount + "$ via Credit Card");
+	}
+	public void refund(Wallet wallet, double amount) {
+		wallet.receive(amount);
+		System.out.println("Refunded " + amount + "$ via Credit Card");
+	}
+}

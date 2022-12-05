@@ -1,0 +1,16 @@
+package Models;
+
+public class OverallDiscount extends Discount {
+
+	public OverallDiscount(Service service, float percentage) {
+		super(service, percentage);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public double apply() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+}

@@ -1,0 +1,11 @@
+package Models;
+
+public class ServiceProvider {
+	public String name;
+	public PaymentMethod payMethod;
+	
+	public ServiceProvider(String name, PaymentMethod payMethod) {
+		this.name = name;
+		this.payMethod = payMethod;
+	}
+}

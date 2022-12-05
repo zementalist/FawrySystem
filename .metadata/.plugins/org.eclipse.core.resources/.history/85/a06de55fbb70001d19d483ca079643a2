@@ -1,0 +1,17 @@
+package Models;
+
+import Interfaces.IDiscountBehavior;
+
+public abstract class Discount implements IDiscountBehavior {
+	protected Service service;
+	public double percentage;
+	public Discount(Service service, float percentage) {
+		this.service = service;
+		this.percentage = percentage;
+	}
+	public double apply() {
+		double originalAmount = service.getCost();
+		double discountAmount = (this.percentage / 100.0) * originalAmount;
+		return originalAmount - discountAmount;
+	}
+}

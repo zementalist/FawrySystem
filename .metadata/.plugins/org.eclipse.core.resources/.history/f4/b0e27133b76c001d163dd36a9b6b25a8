@@ -1,0 +1,62 @@
+package com.Spendly;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import java.awt.SystemColor;
+
+public class SignUp extends JPanel {
+	private JTextField email;
+	private JPasswordField passwordField;
+	private JPasswordField passwordConfirm;
+
+	/**
+	 * Create the panel.
+	 */
+	public SignUp() {
+		setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(77, 53, 308, 236);
+		add(panel);
+		
+		JLabel lblNewLabel = new JLabel("Email");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel.setBounds(10, 11, 92, 24);
+		panel.add(lblNewLabel);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblPassword.setBounds(10, 79, 105, 24);
+		panel.add(lblPassword);
+		
+		email = new JTextField();
+		email.setToolTipText("example@example.com");
+		email.setColumns(10);
+		email.setBounds(10, 46, 167, 24);
+		panel.add(email);
+		
+		JButton btnSignUp = new JButton("Sign Up");
+		btnSignUp.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnSignUp.setBounds(209, 187, 89, 23);
+		panel.add(btnSignUp);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(10, 114, 167, 24);
+		panel.add(passwordField);
+		
+		passwordConfirm = new JPasswordField();
+		passwordConfirm.setBounds(10, 184, 167, 24);
+		panel.add(passwordConfirm);
+		
+		JLabel lblConfirmPassword = new JLabel("Confirm Password");
+		lblConfirmPassword.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblConfirmPassword.setBounds(10, 149, 200, 24);
+		panel.add(lblConfirmPassword);
+
+	}
+}

@@ -1,0 +1,27 @@
+package Models;
+
+import Singletons.User;
+
+public class ServiceProvider extends AbstractServiceProvider {
+	
+	public ServiceProvider(String name) {
+		super(name);
+	}
+
+	public void provide(Service service, int selectedPayMethodIndex) {
+		User user = User.getInstance();
+		double costAfterDiscount= service.discountAction.apply();
+		boolean is_success = this.availablePayMethods.get(selectedPayMethodIndex).execute(user.getWallet(), costAfterDiscount);
+		if(is_success)
+			System.out.println("User (" + user.username + ") has charged " + costAfterDiscount + "$ for " + this.name + " service, from " + this.name);
+		else
+			System.out.println("Not Enough Balance!");
+	}
+	
+
+	@Override
+	public void displayForm() {
+		
+		
+	}
+}

@@ -1,0 +1,11 @@
+package DataStorage;
+import Singletons.ApplicationState;
+public class RefundRequest {
+	public int transaction_id;
+	public RefundRequest(int transact_id) {
+		this.transaction_id = transact_id;
+	}
+	public Transaction getTransaction() {
+		return ApplicationState.transactions.get(transaction_id);
+	}
+}

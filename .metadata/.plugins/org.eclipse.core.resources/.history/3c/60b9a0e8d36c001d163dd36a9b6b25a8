@@ -1,0 +1,16 @@
+package Singletons;
+
+import java.util.*;
+
+import Models.User;
+
+
+public class ApplicationState {
+	public static List<User> registered_users = new ArrayList<User>(
+			Arrays.asList(
+			User.setInstance("ahmed", "ahmed@gmail.com", "123"),
+			User.setInstance("salah", "salah@gmail.com", "123")
+			));
+//	public static User logged_user = null;
+	
+}

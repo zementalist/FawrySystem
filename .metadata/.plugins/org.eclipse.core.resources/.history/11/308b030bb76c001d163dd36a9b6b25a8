@@ -1,0 +1,14 @@
+package com.Spendly;
+
+import javax.swing.JPanel;
+
+public class SignUp extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public SignUp() {
+
+	}
+
+}

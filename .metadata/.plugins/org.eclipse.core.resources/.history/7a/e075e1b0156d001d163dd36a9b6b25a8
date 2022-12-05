@@ -1,0 +1,16 @@
+package Singletons;
+
+import java.util.*;
+
+import Models.RegisteredUser;
+
+
+
+public class ApplicationState {
+	public static List<User> registered_users = new ArrayList<User>(
+			Arrays.asList(
+			
+			));
+//	public static User logged_user = null;
+	
+}

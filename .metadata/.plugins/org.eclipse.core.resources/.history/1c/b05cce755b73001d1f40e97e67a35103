@@ -1,0 +1,23 @@
+package DataStorage;
+
+import Models.Service;
+import Singletons.ApplicationState;
+import Singletons.User;
+
+public class Transaction {
+	public User user;
+	public Service service;
+	public double paidAmount;
+	public static int transactions_counter = 0;
+	public int transaction_id;
+	public Transaction(User user, Service service) {
+		this.user = user;
+		this.service = service;
+		this.paidAmount = user.getWallet().getRecentTransactAmount();
+		this.transaction_id = ++transactions_counter;
+	}
+	
+	public void AddToContext() {
+		ApplicationState.transactions.add(this);
+	}
+}

@@ -1,0 +1,45 @@
+package Models;
+
+import java.util.ArrayList;
+
+import Interfaces.IDiscountBehavior;
+import Interfaces.Observer;
+import Interfaces.Subject;
+
+public abstract class Discount implements IDiscountBehavior {
+	protected Service service;
+	public double percentage;
+	
+//	public ArrayList<Observer> observers;
+	
+	public Discount(Service service, double percentage) {
+		this.service = service;
+		this.percentage = percentage;
+	}
+	public Discount(double percentage) {
+		this.percentage = percentage;
+	}
+	public void setService(Service service) {
+		this.service = service;
+	}
+	public double apply() {
+		double originalAmount = service.getCost();
+		double discountAmount = (this.percentage / 100.0) * originalAmount;
+		return originalAmount - discountAmount;
+	}
+	
+//	public void register(Observer observer) {
+//		observers.add(observer);
+//	}
+//	
+//	public void unregister(Observer observer) {
+//		int index = observers.indexOf(observer);
+//		observers.remove(index);
+//	}
+//	
+//	public void notifyObservers() {
+//		for(Observer observer: observers) {
+//			observer.update(this);
+//		}
+//	}
+}

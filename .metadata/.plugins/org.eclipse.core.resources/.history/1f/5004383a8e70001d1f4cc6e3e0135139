@@ -1,0 +1,25 @@
+package Models;
+
+import Interfaces.IDiscountBehavior;
+import Singletons.User;
+
+public class Service {
+	public ServiceProvider provider;
+	public String name;
+	private double cost;
+	public IDiscountBehavior discountAction;
+	
+	public double getCost() {
+		return this.cost;
+	}
+	public Service(ServiceProvider provider, String name, double cost) {
+		this.provider = provider;
+		this.name = name;
+		this.cost = cost;
+	}
+	public void serve(User user) {
+		this.cost = discountAction.apply();
+		provider.payMethod.execute(user.getWallet(), cost);
+		System.out.println("User (" + user.username + ") has charged " + cost + "$ for " + this.name + " service, from " + this.provider.name);
+	}
+}

@@ -1,0 +1,63 @@
+package com.Spendly;
+
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+import javax.swing.JTabbedPane;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+
+public class ServiceList extends JPanel {
+	private JTextField serviceSearch;
+
+	/**
+	 * 
+	 */
+
+	/**
+	 * Create the panel.
+	 */
+	public ServiceList() {
+//		setLayout(null);
+		
+		String[] availableServices = new String[] {
+				"Mobile recharge services", 
+				"Internet Payment services",
+				"Landline services",
+				"Donations"
+				};
+		JButton searchBtn = new JButton("Search");
+		searchBtn.setBounds(323, 46, 89, 23);
+		add(searchBtn);
+		
+		serviceSearch = new JTextField();
+		serviceSearch.setBounds(41, 47, 243, 20);
+		add(serviceSearch);
+		serviceSearch.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Search Services");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel.setBounds(175, 11, 109, 25);
+		add(lblNewLabel);
+		
+		JList list = new JList();
+		list.setModel(new AbstractListModel() {
+			
+			public int getSize() {
+				return availableServices.length;
+			}
+			public Object getElementAt(int index) {
+				return availableServices[index];
+			}
+		});
+		list.setBounds(41, 96, 371, 160);
+		add(list);
+
+	}
+}
+ 

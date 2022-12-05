@@ -1,0 +1,19 @@
+package Models;
+
+import Singletons.User;
+
+public class RegisteredUser extends User {
+	
+	private RegisteredUser(String username, String email, String password){
+		super(username, email, password);
+	}
+	
+	public static RegisteredUser register(String username, String email, String password) {
+		if(!username.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
+			return new RegisteredUser(username, email, password);
+		}
+		return null;
+	}
+	
+
+}

@@ -1,0 +1,9 @@
+package Models;
+
+import Interfaces.IDiscountBehavior;
+
+public abstract class Discount implements IDiscountBehavior {
+	public double apply(double discountAmount, double originalAmount) {
+		return originalAmount - discountAmount;
+	}
+}

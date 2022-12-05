@@ -1,0 +1,80 @@
+package com.Spendly;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.JLabel;
+import java.awt.SystemColor;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class LoginFrame extends JFrame {
+
+	private JPanel contentPane;
+	private JPasswordField passwordField;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginFrame frame = new LoginFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public LoginFrame() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Login");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton.setBounds(274, 188, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("I don't have an account");
+		lblNewLabel_1.setForeground(SystemColor.textHighlight);
+		lblNewLabel_1.setBounds(75, 194, 114, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(75, 152, 167, 24);
+		contentPane.add(passwordField);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblPassword.setBounds(75, 117, 105, 24);
+		contentPane.add(lblPassword);
+		
+		textField = new JTextField();
+		textField.setToolTipText("example@example.com");
+		textField.setColumns(10);
+		textField.setBounds(75, 72, 167, 24);
+		contentPane.add(textField);
+		
+		JLabel lblNewLabel = new JLabel("Email");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel.setBounds(75, 37, 92, 24);
+		contentPane.add(lblNewLabel);
+	}
+
+}

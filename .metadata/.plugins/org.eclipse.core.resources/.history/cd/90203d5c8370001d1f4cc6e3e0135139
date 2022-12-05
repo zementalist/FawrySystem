@@ -1,0 +1,7 @@
+package Models;
+
+public class CreditCardPaymentMethod extends PaymentMethod {
+	public void execute() {
+		System.out.println("Credit Card Pay");
+	}
+}

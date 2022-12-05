@@ -1,0 +1,16 @@
+package DataStorage;
+
+import Models.Service;
+import Singletons.User;
+
+public class Transaction {
+	public User user;
+	public Service service;
+	public double paidAmount;
+	
+	public Transaction(User user, Service service, double paidAmount) {
+		this.user = user;
+		this.service = service;
+		this.paidAmount = paidAmount;
+	}
+}

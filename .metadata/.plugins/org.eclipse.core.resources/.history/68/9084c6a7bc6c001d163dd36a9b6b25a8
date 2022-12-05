@@ -1,0 +1,70 @@
+package com.Spendly;
+
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import java.awt.SystemColor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class LoginPanel extends JPanel {
+	private JTextField textField;
+	private JPasswordField passwordField;
+
+	/**
+	 * Create the panel.
+	 */
+	public LoginPanel() {
+		setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		add(panel, BorderLayout.CENTER);
+		
+		JLabel lblNewLabel = new JLabel("Email");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel.setBounds(10, 11, 92, 24);
+		panel.add(lblNewLabel);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblPassword.setBounds(10, 91, 105, 24);
+		panel.add(lblPassword);
+		
+		textField = new JTextField();
+		textField.setToolTipText("example@example.com");
+		textField.setColumns(10);
+		textField.setBounds(10, 46, 167, 24);
+		panel.add(textField);
+		
+		JButton btnNewButton = new JButton("Login");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton.setBounds(209, 162, 89, 23);
+		panel.add(btnNewButton);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(10, 126, 167, 24);
+		panel.add(passwordField);
+		
+		JLabel lblNewLabel_1 = new JLabel("I don't have an account");
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+//				panel.setVisible(false);
+				panel.getParent().remove(panel);
+				
+				panel.revalidate();
+				panel.repaint();
+			}
+		});
+		lblNewLabel_1.setForeground(SystemColor.textHighlight);
+		lblNewLabel_1.setBounds(10, 168, 114, 14);
+		panel.add(lblNewLabel_1);
+
+	}
+
+}

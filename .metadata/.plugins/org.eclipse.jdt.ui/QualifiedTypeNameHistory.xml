@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="Singletons.LoggedUser"/>
+    <fullyQualifiedTypeName name="java.util.prefs.Preferences"/>
+    <fullyQualifiedTypeName name="Models.User"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="Models.RegisteredUser"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="javax.swing.ListSelectionModel"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="Models.Discount"/>
+    <fullyQualifiedTypeName name="Interfaces.Observer"/>
+    <fullyQualifiedTypeName name="Interfaces.Subject"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="Singletons.ApplicationState"/>
+    <fullyQualifiedTypeName name="Singletons.User"/>
+    <fullyQualifiedTypeName name="DataStorage.RefundRequest"/>
+    <fullyQualifiedTypeName name="Models.Service"/>
+    <fullyQualifiedTypeName name="Interfaces.IServiceProvider"/>
+</qualifiedTypeNameHistroy>

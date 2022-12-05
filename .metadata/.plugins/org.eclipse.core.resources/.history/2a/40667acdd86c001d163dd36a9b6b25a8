@@ -1,0 +1,13 @@
+package Models;
+
+import Singletons.User;
+
+public class RegisteredUser extends User {
+	
+	public RegisteredUser(String username, String email, String password){
+		super(username, email, password);
+		
+	}
+	
+
+}

@@ -1,0 +1,8 @@
+package Interfaces;
+
+import Models.Service;
+
+public interface IServiceProvider {
+	public void provide(Service service);
+	public void displayService();
+}

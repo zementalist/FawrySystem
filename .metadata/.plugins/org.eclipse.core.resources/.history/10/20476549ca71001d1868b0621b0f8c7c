@@ -1,0 +1,26 @@
+package Models;
+
+import Singletons.User;
+
+public class ServiceProvider {
+	public String name;
+	public PaymentMethod payMethod;
+	
+	public ServiceProvider(String name, PaymentMethod payMethod) {
+		this.name = name;
+		this.payMethod = payMethod;
+	}
+	public ServiceProvider(String name) {
+		this.name = name;
+		this.payMethod = new CreditCardPaymentMethod();
+	}
+	
+	public void serve(User user, Service service) {
+		double costAfterDiscount= service.discountAction.apply();
+		boolean is_success = payMethod.execute(user.getWallet(), costAfterDiscount);
+		if(is_success)
+			System.out.println("User (" + user.username + ") has charged " + costAfterDiscount + "$ for " + this.name + " service, from " + this.name);
+		else
+			System.out.println("Not Enough Balance!");
+	}
+}

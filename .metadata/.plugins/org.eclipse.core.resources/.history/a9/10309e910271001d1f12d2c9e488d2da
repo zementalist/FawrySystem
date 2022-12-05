@@ -1,0 +1,39 @@
+package Singletons;
+
+import java.util.*;
+
+import DataStorage.RefundRequest;
+import DataStorage.Transaction;
+import Models.*;
+
+
+
+public class ApplicationState {
+	public static List<User> registered_users = new ArrayList<User>(
+			Arrays.asList(
+			
+			));
+	
+	public static List<String> available_services = new ArrayList<String>(
+			Arrays.asList(
+					"Mobile recharge services",
+					"Internet Payment services",
+					"Landline services",
+					"Donations"
+			));
+//	public static User logged_user = null;
+	public static List<Transaction> transactions = new ArrayList<Transaction>(
+			Arrays.asList(
+			
+			));
+	public static List<RefundRequest> refund_requests = new ArrayList<RefundRequest>(
+			Arrays.asList(
+			
+			));
+	
+	public static Service selected_service;
+	public static ServiceProvider selected_service_provider;
+	
+	
+	
+}

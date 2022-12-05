@@ -1,0 +1,7 @@
+package Models;
+
+public class CashPaymentMethod extends PaymentMethod  {
+	public void execute() {
+		System.out.println("Cash Payment");
+	}
+}

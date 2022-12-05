@@ -1,0 +1,10 @@
+package Models;
+
+import Interfaces.IDiscountBehavior;
+
+public abstract class Discount implements IDiscountBehavior {
+	public double apply(float percentage, double originalAmount) {
+		double discountAmount = (percentage / 100.0) * originalAmount;
+		return originalAmount - discountAmount;
+	}
+}

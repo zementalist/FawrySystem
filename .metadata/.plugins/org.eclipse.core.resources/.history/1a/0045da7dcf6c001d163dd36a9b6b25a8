@@ -1,0 +1,27 @@
+package Models;
+
+import Singletons.ApplicationState;
+
+public class User {
+	public String username;
+	public String email;
+	public String password;
+	
+	public User(String username, String email, String password) {
+		this.username = username;
+		this.email = email;
+		this.password = password;
+	}
+	
+	public static boolean login(String email, String password) {
+		User user = ApplicationState.registered_users.stream().filter(c -> c.email == email).findFirst().get();
+		if(user != null) {
+			if(user.password == password) {
+				ApplicationState.logged_user = user;
+				return true;
+			}
+		}
+		return false;
+	}
+	
+}

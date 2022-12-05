@@ -1,0 +1,21 @@
+package Models;
+
+import java.util.ArrayList;
+
+public abstract class AbstractServiceProvider {
+	public String name;
+	public ArrayList<PaymentMethod> availablePayMethods;
+	
+	public AbstractServiceProvider(String name) {
+		this.name = name;
+		this.availablePayMethods.add(new CreditCardPaymentMethod());
+	}
+	public void addPaymentMethod(PaymentMethod payMethod) {
+		this.availablePayMethods.add(payMethod);
+	}
+	
+	public abstract void provide(Service service, int selectedPayMethodIndex);
+	
+	public abstract void displayForm();
+
+}

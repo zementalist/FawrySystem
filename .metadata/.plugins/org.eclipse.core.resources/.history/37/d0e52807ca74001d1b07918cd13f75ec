@@ -1,0 +1,81 @@
+package com.Spendly;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Singletons.ApplicationState;
+
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.util.List;
+
+import javax.swing.JList;
+import javax.swing.ListSelectionModel;
+import javax.swing.JButton;
+import javax.swing.AbstractListModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class MobileRechargeFrame extends JFrame {
+
+	private JPanel contentPane;
+	private String[] providers = ApplicationState.mobile_service_providers;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MobileRechargeFrame frame = new MobileRechargeFrame();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public MobileRechargeFrame() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel title = new JLabel("Mobile Recharge Service");
+		title.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		title.setBounds(146, 11, 155, 23);
+		contentPane.add(title);
+		
+		JList list = new JList();
+		list.setModel(new AbstractListModel() {
+			public int getSize() {
+				return providers.length;
+			}
+			public Object getElementAt(int index) {
+				return providers[index];
+			}
+		});
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.setBounds(33, 90, 371, 160);
+		contentPane.add(list);
+		
+		JButton nextBtn = new JButton("Next");
+		nextBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		nextBtn.setBounds(315, 56, 89, 23);
+		contentPane.add(nextBtn);
+		setVisible(true);
+	}
+}

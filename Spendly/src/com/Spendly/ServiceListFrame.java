@@ -1,0 +1,135 @@
+package com.Spendly;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Models.Service;
+import Models.ServiceFactory;
+import Singletons.ApplicationState;
+
+import javax.swing.AbstractListModel;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.util.List;
+import java.util.prefs.Preferences;
+
+import javax.swing.JList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+public class ServiceListFrame extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField searchField;
+
+	private List<String> availableServices = ApplicationState.available_services.stream()
+			.map(c -> c.name)
+			.toList();
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ServiceListFrame frame = new ServiceListFrame();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public List<String> searchServices(String keyword) {
+		return availableServices.stream()
+				.filter(c -> c.toLowerCase().contains(keyword.toLowerCase()))
+				.toList();
+	}
+	
+	/**
+	 * Create the frame.
+	 */
+	public ServiceListFrame() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton nextBtn = new JButton("Next");
+		JList list = new JList();
+
+		nextBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Object choice = list.getSelectedValue();
+				int selected_index = list.getSelectedIndex();
+				if(choice != null) {
+					ServiceFactory srv_factory = new ServiceFactory();
+					String selected_service = choice.toString();
+					Service service = srv_factory.makeService(selected_service);
+					ApplicationState.selected_service = service;
+					System.out.println(selected_service);
+					JFrame frame = new ServiceProviderFrame(ApplicationState.specific_providers[selected_index]);
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					dispose();
+				}
+			}
+		});
+		nextBtn.setBounds(313, 46, 89, 23);
+		contentPane.add(nextBtn);
+		
+		searchField = new JTextField();
+		searchField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				String keyword = searchField.getText();
+				List<String> searchResults = searchServices(keyword);
+				list.setModel(new AbstractListModel() {
+					
+					public int getSize() {
+						return searchResults.size();
+					}
+					public Object getElementAt(int index) {
+						return searchResults.get(index);
+					}
+				});
+			}
+		});
+		searchField.setColumns(10);
+		searchField.setBounds(31, 47, 243, 20);
+		contentPane.add(searchField);
+		
+		JLabel lblNewLabel = new JLabel("Search Services");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel.setBounds(165, 11, 109, 25);
+		contentPane.add(lblNewLabel);
+		
+		list.setModel(new AbstractListModel() {
+			
+			public int getSize() {
+				return availableServices.size();
+			}
+			public Object getElementAt(int index) {
+				return availableServices.get(index);
+			}
+		});
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.setBounds(31, 96, 371, 160);
+		contentPane.add(list);
+		setVisible(true);
+	}
+
+}

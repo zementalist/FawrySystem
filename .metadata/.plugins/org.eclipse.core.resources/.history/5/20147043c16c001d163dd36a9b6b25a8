@@ -1,0 +1,19 @@
+package Singletons;
+
+public class LoggedUser {
+	private static LoggedUser single;
+	public int user;
+	
+	
+	private LoggedUser(int value) {
+
+			user = value;
+
+	}
+	public static LoggedUser CurrentUser(int value) {
+		if(single == null) {
+			return new LoggedUser(value);
+		}
+		return single;
+	}
+}

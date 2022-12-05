@@ -1,0 +1,41 @@
+package Models;
+
+import java.util.ArrayList;
+
+import DataStorage.Transaction;
+import Singletons.User;
+
+public abstract class ServiceProvider {
+	public String name;
+	public ArrayList<PaymentMethod> availablePayMethods = new ArrayList<PaymentMethod>();
+	protected Service service;
+	public ServiceProvider(String name) {
+		this.name = name; 
+		this.availablePayMethods.add(new CreditCardPaymentMethod());
+	}
+	public void addPaymentMethod(PaymentMethod payMethod) {
+		this.availablePayMethods.add(payMethod);
+	}
+	
+	public void setService(Service srvc) {
+		this.service = srvc;
+	}
+	
+
+	public void provide(Service service, int selectedPayMethodIndex) {
+		User user = User.getInstance();
+		double costAfterDiscount= service.discountAction.apply();
+		PaymentMethod payMethod = this.availablePayMethods.get(selectedPayMethodIndex);
+		boolean is_success = payMethod.execute(user.getWallet(), costAfterDiscount);
+		if(is_success) {
+			System.out.println("User (" + user.username + ") has charged " + costAfterDiscount + "$ for " + this.name + " service, from " + this.name);
+			new Transaction(this, payMethod).AddToContext();
+		}
+		else
+			System.out.println("Not Enough Balance!");
+	}
+	
+
+	public abstract void displayForm();
+
+}

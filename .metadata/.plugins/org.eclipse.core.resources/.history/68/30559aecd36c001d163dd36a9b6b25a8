@@ -1,0 +1,15 @@
+package Singletons;
+
+import java.util.*;
+
+import Models.User;
+
+
+public class ApplicationState {
+	public static List<HashMap> registered_users = new ArrayList<HashMap>(
+			Arrays.asList(
+					new HashMap()
+			));
+//	public static User logged_user = null;
+	
+}

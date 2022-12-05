@@ -1,0 +1,32 @@
+package Models;
+
+import java.util.Optional;
+
+import Singletons.ApplicationState;
+import Singletons.User;
+
+public class RegisteredUser extends User {
+	
+	private RegisteredUser(String username, String email, String password){
+		super(username, email, password);
+	}
+	
+	private RegisteredUser save() {
+		ApplicationState.registered_users.add(this);
+		return this;
+	}
+	public static RegisteredUser register(String username, String email, String password, String password_confirm) {
+		Optional<User> userExistance = ApplicationState.registered_users.stream().filter(c -> email.equals(c.email)).findFirst();
+
+		if(!username.isEmpty() && !email.isEmpty()
+				&& !password.isEmpty() && password_confirm.equals(password)
+				&& userExistance.isEmpty()
+				) {
+			
+			return new RegisteredUser(username, email, password).save();
+		}
+		return null;
+	}
+	
+
+}

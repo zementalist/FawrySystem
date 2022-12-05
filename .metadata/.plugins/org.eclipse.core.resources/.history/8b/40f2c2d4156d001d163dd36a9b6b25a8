@@ -1,0 +1,90 @@
+package com.Spendly;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Singletons.ApplicationState;
+
+import javax.swing.AbstractListModel;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.util.prefs.Preferences;
+
+import javax.swing.JList;
+
+public class ServiceListFrame extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	Preferences prefs = Preferences.userNodeForPackage(ApplicationState.class);
+
+	private String[] availableServices = new String[] {
+			"Mobile recharge services", 
+			"Internet Payment services",
+			"Landline services",
+			"Donations"
+			};
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ServiceListFrame frame = new ServiceListFrame();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ServiceListFrame() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton searchBtn = new JButton("Search");
+		searchBtn.setBounds(313, 46, 89, 23);
+		contentPane.add(searchBtn);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(31, 47, 243, 20);
+		contentPane.add(textField);
+		
+		JLabel lblNewLabel = new JLabel("Search Services");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel.setBounds(165, 11, 109, 25);
+		contentPane.add(lblNewLabel);
+		
+		JList list = new JList();
+		list.setModel(new AbstractListModel() {
+			
+			public int getSize() {
+				return availableServices.length;
+			}
+			public Object getElementAt(int index) {
+				return availableServices[index];
+			}
+		});
+		list.setBounds(31, 96, 371, 160);
+		contentPane.add(list);
+		System.out.println(prefs.get("name",""));
+	}
+
+}

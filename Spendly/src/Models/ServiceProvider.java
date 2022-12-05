@@ -1,0 +1,53 @@
+package Models;
+
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+import DataStorage.Transaction;
+import Singletons.User;
+
+public abstract class ServiceProvider {
+	public String name;
+	public ArrayList<PaymentMethod> availablePayMethods = new ArrayList<PaymentMethod>();
+	protected Service service;
+	public ServiceProvider(String name) {
+		this.name = name;
+		this.availablePayMethods.add(new CreditCardPaymentMethod());
+	}
+	public void addPaymentMethod(PaymentMethod payMethod) {
+		this.availablePayMethods.add(payMethod);
+	}
+	
+	public void setService(Service srvc) {
+		this.service = srvc;
+	}
+	
+
+	public String provide(int selectedPayMethodIndex) {
+		User user = User.getInstance();
+		double costBeforeDiscount = this.service.getCost();
+		double costAfterDiscount= this.service.discountAction.apply();
+		PaymentMethod payMethod = this.availablePayMethods.get(selectedPayMethodIndex);
+		boolean is_success = payMethod.execute(user.getWallet(), costAfterDiscount);
+		String message = "Something Went Wrong!";
+		if(is_success) {
+			System.out.println("User (" + user.username + ") has charged " + costAfterDiscount + "$ for " + this.service.name + " , from " + this.name);
+			new Transaction(this, payMethod).AddToContext();
+			message = "User (" + user.username + ") has charged " + costAfterDiscount + "$ for " + this.service.name + " , from " + this.name;
+			if(costBeforeDiscount != costAfterDiscount) {
+				int discount_percentage = (int) ((costBeforeDiscount / costAfterDiscount) * 100);
+				message += "\n Discount Applied: " + discount_percentage;
+			}
+		}
+		else {
+			System.out.println("Not Enough Balance!");
+			message ="Not Enough Balance!";
+		}
+		return message;
+	}
+	
+
+	public abstract void displayForm();
+
+}

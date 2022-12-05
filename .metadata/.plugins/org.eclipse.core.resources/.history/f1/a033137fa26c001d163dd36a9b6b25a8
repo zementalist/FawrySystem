@@ -1,0 +1,115 @@
+package com.Spendly;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JPasswordField;
+
+
+
+
+
+public class LoginForm extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JPasswordField passwordField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginForm frame = new LoginForm();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public LoginForm() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(72, 42, 308, 196);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Email");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel.setBounds(10, 11, 92, 24);
+		panel.add(lblNewLabel);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblPassword.setBounds(10, 91, 105, 24);
+		panel.add(lblPassword);
+		
+		textField = new JTextField();
+		textField.setToolTipText("example@example.com");
+		textField.setBounds(10, 46, 167, 24);
+		panel.add(textField);
+		textField.setColumns(10);
+		ServiceList sl = new ServiceList();
+		LoginForm that = this;
+		JButton btnNewButton = new JButton("Login");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String email = textField.getText();
+				String password = String.valueOf(passwordField.getPassword());
+				System.out.println(email.length());
+				if(email.equals("zeyad@gmail.com") && password.equals("12345") || true) {
+//					SignUpForm suf = new SignUpForm();
+					
+					contentPane.add(sl);
+					
+//					setContentPane(sl);
+					sl.setVisible(true);
+					
+//					sl.setVisible(true);
+//					suf.setVisible(true);
+//					that.setVisible(false);
+					System.out.println("LOGGED");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Invalid Credentials.", "Invalid Credentials.", JOptionPane.ERROR_MESSAGE);
+				}
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton.setBounds(209, 162, 89, 23);
+		panel.add(btnNewButton);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(10, 126, 167, 24);
+		panel.add(passwordField);
+//		panel.add(sl);
+		
+		
+	}
+}
