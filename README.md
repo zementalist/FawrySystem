@@ -7,6 +7,9 @@ It's deadline now, I finished all the requirements using 25 java class, you can 
 <br>
 but I will update this repo as I'm going to continue adding more User-Interface for the implemented logic rather than console app
 
+# Console Running Scenario
+![Screenshot_7](https://user-images.githubusercontent.com/50156227/205766516-f31a4554-fa2d-40c9-9b05-3cad8316e5d7.png)
+
 # Screenshots
 
 ![Screenshot_2](https://user-images.githubusercontent.com/50156227/205760574-7563a78a-a171-4113-a2ef-213441f06fd0.png)
