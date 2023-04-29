@@ -1,4 +1,5 @@
 # FawrySystem
+<h2>E-Wallet Payment System</h2>
 # How to Run
 using Eclipse, run the file: ./Spendly/src/com/Spendly/MainFrame.java
 <br><br>
